@@ -43,7 +43,7 @@
 
                                 echo '<tr>
                                     <td>' .$Id. '</td>
-                                    <td><img src="/Parfume_site/img/profilePic' .$Id. '.jpg" alt="image for this user" onError="this.src =\'/Parfume_site/img/profilePic.jpg\'" width="100px" height="100px"></td>
+                                    <td><img src="/INTERBLEND_PC/img/profilePic' .$Id. '.jpg" alt="image for this user" onError="this.src =\'/INTERBLEND_PC/img/profilePic.jpg\'" width="100px" height="100px"></td>
                                     <td>' .$username. '</td>
                                     <td>
                                         <p>First Name : <b>' .$firstName. '</b></p>

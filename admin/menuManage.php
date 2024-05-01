@@ -84,7 +84,7 @@
                                     echo '<tr>
                                             <td class="text-center">' .$pizzaCategorieId. '</td>
                                             <td>
-                                                <img src="/Parfume_site/img/pizza-'.$pizzaId. '.jpg" alt="image for this item" width="150px" height="150px">
+                                                <img src="/INTERBLEND_PC/img/pizza-'.$pizzaId. '.jpg" alt="image for this item" width="150px" height="150px">
                                             </td>
                                             <td>
                                                 <p>Name : <b>' .$pizzaName. '</b></p>
@@ -145,7 +145,7 @@
 					<button type="submit" class="btn btn-success my-1" name="updateItemPhoto">Update Img</button>
 				</div>
 				<div class="form-group col-md-4">
-					<img src="/Parfume_site/img/pizza-<?php echo $pizzaId; ?>.jpg" id="itemPhoto" name="itemPhoto" alt="item image" width="100" height="100">
+					<img src="/INTERBLEND_PC/img/pizza-<?php echo $pizzaId; ?>.jpg" id="itemPhoto" name="itemPhoto" alt="item image" width="100" height="100">
 				</div>
 			</div>
 		</form>

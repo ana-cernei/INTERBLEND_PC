@@ -69,7 +69,7 @@ if($_SERVER["REQUEST_METHOD"] == "POST") {
                 $deletesql = "DELETE FROM `viewcart` WHERE `userId`='$userId'";   
                 $deleteresult = mysqli_query($conn, $deletesql);
                 echo '<script>alert("Thanks for ordering with us. Your order id is ' .$orderId. '.");
-                    window.location.href="http://localhost/Parfume_site/index.php";  
+                    window.location.href="http://localhost/INTERBLEND_PC/index.php";  
                     </script>';
                     exit();
             }

@@ -82,7 +82,7 @@
 
         <div class="row">
           <div class="col-lg-6">
-            <h3>Welcome to <strong>Cologne Crafters</strong></h3>
+            <h3>Welcome to <strong>InterBlend</strong></h3>
             <h3><strong>The Worldwide Leader in Men Perfumes</strong></h3>
             <p class="font-italic">
           </div>

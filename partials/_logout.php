@@ -9,5 +9,5 @@ unset($_SESSION["userId"]);
 // session_unset();
 // session_destroy();
 
-header("location: /Parfume_site/index.php");
+header("location: /INTERBLEND_PC/index.php");
 ?>

@@ -9,7 +9,7 @@
         if($check !== false) {
             $newfilename = "person-".$userId.".jpg";
 
-            $uploaddir = $_SERVER['DOCUMENT_ROOT'].'/Parfume_site/img/';
+            $uploaddir = $_SERVER['DOCUMENT_ROOT'].'/INTERBLEND_PC/img/';
             $uploadfile = $uploaddir . $newfilename;
 
             if (move_uploaded_file($_FILES['image']['tmp_name'], $uploadfile)) {
@@ -60,7 +60,7 @@
     }
     
     if(isset($_POST["removeProfilePic"])){
-        $filename = $_SERVER['DOCUMENT_ROOT']."/Parfume_site/img/person-".$userId.".jpg";
+        $filename = $_SERVER['DOCUMENT_ROOT']."/INTERBLEND_PC/img/person-".$userId.".jpg";
         if (file_exists($filename)) {
             unlink($filename);
             echo "<script>alert('Removed');

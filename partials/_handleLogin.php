@@ -15,15 +15,15 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
             $_SESSION['loggedin'] = true;
             $_SESSION['username'] = $username;
             $_SESSION['userId'] = $userId;
-            header("location:/Parfume_site/index.php?loginsuccess=true");
+            header("location:/INTERBLEND_PC/index.php?loginsuccess=true");
             exit();
         } 
         else{
-            header("location:/Parfume_site/index.php?loginsuccess=false");
+            header("location:/INTERBLEND_PC/index.php?loginsuccess=false");
         }
     } 
     else{
-        header("location:/Parfume_site/index.php?loginsuccess=false");
+        header("location:/INTERBLEND_PC/index.php?loginsuccess=false");
     }
 }    
 ?>

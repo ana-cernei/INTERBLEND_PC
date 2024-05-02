@@ -6,7 +6,7 @@ use PHPMailer\PHPMailer\PHPMailer;
 use PHPMailer\PHPMailer\SMTP;
 use PHPMailer\PHPMailer\Exception;
 
-require 'C:\xampp\htdocs\Parfume_site\vendor\autoload.php'; // Path to Composer autoload
+require 'C:\xampp\htdocs\INTERBLEND_PC\vendor\autoload.php'; // Path to Composer autoload
 
 if ($_SERVER['REQUEST_METHOD'] == "POST") {
     $username = stripslashes($_POST['username']);
@@ -49,7 +49,7 @@ if ($_SERVER['REQUEST_METHOD'] == "POST") {
             //Content
             $mail->isHTML(true);
             $mail->Subject = 'Email Verification';
-            $mail->Body = "Click the following link to verify your email: <a href='http://localhost/Parfume_site'>Verify Email</a>";
+            $mail->Body = "Click the following link to verify your email: <a href='http://localhost/INTERBLEND_PC'>Verify Email</a>";
 
             $mail->send();
             // echo "

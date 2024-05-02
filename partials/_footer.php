@@ -1,3 +1,3 @@
 <div class="footer container-fluid bg-dark text-light">
-    <p class="text-center py-2 mb-0">Cologne Crafters </p>
+    <p class="text-center py-2 mb-0">InterBlend </p>
 </div>

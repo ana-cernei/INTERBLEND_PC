@@ -17,19 +17,19 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
                 $_SESSION['adminloggedin'] = true;
                 $_SESSION['adminusername'] = $username;
                 $_SESSION['adminuserId'] = $userId;
-                header("location: /Parfume_site/admin/index.php?loginsuccess=true");
+                header("location: /INTERBLEND_PC/admin/index.php?loginsuccess=true");
                 exit();
             } 
             else{
-                header("location: /Parfume_site/admin/login.php?loginsuccess=false");
+                header("location: /INTERBLEND_PC/admin/login.php?loginsuccess=false");
             }
         }
         else {
-            header("location: /Parfume_site/admin/login.php?loginsuccess=false");
+            header("location: /INTERBLEND_PC/admin/login.php?loginsuccess=false");
         }
     } 
     else{
-        header("location: /Parfume_site/admin/login.php?loginsuccess=false");
+        header("location: /INTERBLEND_PC/admin/login.php?loginsuccess=false");
     }
 }    
 ?>

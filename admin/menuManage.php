@@ -1,3 +1,4 @@
+
 <div class="container-fluid" style="margin-top:98px">
 	
 	<div class="col-lg-12">
@@ -7,7 +8,7 @@
 			<form action="partials/_menuManage.php" method="post" enctype="multipart/form-data">
 				<div class="card mb-3">
 					<div class="card-header" style="background-color: rgb(111 202 203);">
-						Create New Item
+						Create New Opportunity
 				  	</div>
 					<div class="card-body">
 							<div class="form-group">
@@ -38,11 +39,34 @@
 								</select>
 							</div>
 							
+							<!-- New fields in the create form -->
+							<div class="form-group">
+								<label class="control-label">Skills:</label>
+								<input type="text" class="form-control" name="skills" required>
+							</div>
+							<div class="form-group">
+								<label class="control-label">Language:</label>
+								<input type="text" class="form-control" name="language" required>
+							</div>
+							<div class="form-group">
+								<label class="control-label">Minimum Study Level:</label>
+								<input type="text" class="form-control" name="minimum_study_level" required>
+							</div>
+							<div class="form-group">
+								<label class="control-label">Accommodation:</label>
+								<textarea cols="30" rows="3" class="form-control" name="accommodation" required></textarea>
+							</div>
+							<div class="form-group">
+								<label class="control-label">Food:</label>
+								<textarea cols="30" rows="3" class="form-control" name="food" required></textarea>
+							</div>
+
 							<div class="form-group">
 								<label for="image" class="control-label">Image</label>
 								<input type="file" name="image" id="image" accept=".jpg" class="form-control" required style="border:none;">
 								<small id="Info" class="form-text text-muted mx-3">Please .jpg file upload.</small>
 							</div>
+
 					</div>
 							
 					<div class="card-footer">
@@ -68,42 +92,58 @@
 									<th class="text-center">Img</th>
 									<th class="text-center" style="width:58%;">Item Detail</th>
 									<th class="text-center" style="width:18%;">Action</th>
+									<th>Skill</th>
+									<th>Language</th>
+									<th>Study Level</th>
+									<th>Accommodation</th>
+									<th>Food</th>
 								</tr>
 							</thead>
 							<tbody>
-                            <?php
-                                $sql = "SELECT * FROM `pizza`";
-                                $result = mysqli_query($conn, $sql);
-                                while($row = mysqli_fetch_assoc($result)){
-                                    $pizzaId = $row['pizzaId'];
-                                    $pizzaName = $row['pizzaName'];
-                                    $pizzaPrice = $row['pizzaPrice'];
-                                    $pizzaDesc = $row['pizzaDesc'];
-                                    $pizzaCategorieId = $row['pizzaCategorieId'];
+    <?php
+        $sql = "SELECT * FROM `pizza`"; // Ensure your SELECT query fetches the new columns
+        $result = mysqli_query($conn, $sql);
+        while ($row = mysqli_fetch_assoc($result)) {
+            $pizzaId = $row['pizzaId'];
+            $pizzaName = $row['pizzaName'];
+            $pizzaPrice = $row['pizzaPrice'];
+            $pizzaDesc = $row['pizzaDesc'];
+            $pizzaCategorieId = $row['pizzaCategorieId'];
+            $skills = $row['skills']; // New attribute
+            $language = $row['language']; // New attribute
+            $minimum_study_level = $row['minimum_study_level']; // New attribute
+            $accommodation = $row['accommodation']; // New attribute
+            $food = $row['food']; // New attribute
 
-                                    echo '<tr>
-                                            <td class="text-center">' .$pizzaCategorieId. '</td>
-                                            <td>
-                                                <img src="/INTERBLEND_PC/img/pizza-'.$pizzaId. '.jpg" alt="image for this item" width="150px" height="150px">
-                                            </td>
-                                            <td>
-                                                <p>Name : <b>' .$pizzaName. '</b></p>
-                                                <p>Description : <b class="truncate">' .$pizzaDesc. '</b></p>
-                                                <p>Price : <b>' .$pizzaPrice. '</b></p>
-                                            </td>
-                                            <td class="text-center">
-												<div class="row mx-auto" style="width:112px">
-													<button class="btn btn-sm btn-primary" type="button" data-toggle="modal" data-target="#updateItem' .$pizzaId. '">Edit</button>
-													<form action="partials/_menuManage.php" method="POST">
-														<button name="removeItem" class="btn btn-sm btn-danger" style="margin-left:9px;">Delete</button>
-														<input type="hidden" name="pizzaId" value="'.$pizzaId. '">
-													</form>
-												</div>
-                                            </td>
-                                        </tr>';
-                                }
-                            ?>
-							</tbody>
+            echo '<tr>
+                    <td class="text-center">' . $pizzaCategorieId . '</td>
+                    <td>
+                        <img src="/INTERBLEND_PC/img/pizza-'.$pizzaId. '.jpg" alt="Image for item ' . $pizzaId . '" width="150px" height="150px">
+                    </td>
+                    <td>
+                        <p>Name: <b>' . $pizzaName . '</b></p>
+                        <p>Description: <b class="truncate">' . $pizzaDesc . '</b></p>
+                        <p>Price: <b>' . $pizzaPrice . '</b></p>
+                        <p>Skills: <b>' . $skills . '</b></p>
+                        <p>Language: <b>' . $language . '</b></p>
+                        <p>Minimum Study Level: <b>' . $minimum_study_level . '</b></p>
+                        <p>Accommodation: <b>' . $accommodation . '</b></p>
+                        <p>Food: <b>' . $food . '</b></p>
+                    </td>
+                    <td class="text-center">
+                        <div class="row mx-auto" style="width:112px">
+                            <button class="btn btn-sm btn-primary" type="button" data-toggle="modal" data-target="#updateItem' . $pizzaId . '">Edit</button>
+                            <form action="partials/_menuManage.php" method="POST">
+                                <button name="removeItem" class="btn btn-sm btn-danger" style="margin-left:9px;">Delete</button>
+                                <input type="hidden" name="pizzaId" value="' . $pizzaId . '">
+                            </form>
+                        </div>
+                    </td>
+                </tr>';
+        }
+    ?>
+</tbody>
+
 						</table>
 					</div>
 				</div>
@@ -168,6 +208,28 @@
                 <b><label for="desc">Description</label></b>
                 <textarea class="form-control" id="desc" name="desc" rows="2" required minlength="6"><?php echo $pizzaDesc; ?></textarea>
             </div>
+			<!-- New fields in the update modal -->
+			<div class="text-left my-2">
+				<b><label for="skills">Skills:</label></b>
+				<input class="form-control" id="skills" name="skills" type="text" required value="<?php echo $skills; ?>">
+			</div>
+			<div class="text-left my-2">
+				<b><label for="language">Language:</label></b>
+				<input class="form-control" id="language" name="language" type="text" required value="<?php echo $language; ?>">
+			</div>
+			<div class="text-left my-2">
+				<b><label for="minimum_study_level">Minimum Study Level:</label></b>
+				<input class="form-control" id="minimum_study_level" name="minimum_study_level" type="text" required value="<?php echo $minimum_study_level; ?>">
+			</div>
+			<div class="text-left my-2">
+				<b><label for="accommodation">Accommodation:</label></b>
+				<textarea class="form-control" id="accommodation" name="accommodation" rows="2" required><?php echo $accommodation; ?></textarea>
+			</div>
+			<div class="text-left my-2">
+				<b><label for="food">Food:</label></b>
+				<textarea class="form-control" id="food" name="food" rows="2" required><?php echo $food; ?></textarea>
+			</div>
+
             <input type="hidden" id="pizzaId" name="pizzaId" value="<?php echo $pizzaId; ?>">
             <button type="submit" class="btn btn-success" name="updateItem">Update</button>
         </form>

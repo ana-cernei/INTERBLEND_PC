@@ -11,7 +11,7 @@
             <div>
                 <a href="index.php" class="nav__logo">
                     <i class='bx bx-layer nav__logo-icon'></i>
-                    <span class="nav__logo-name">Cologne Crafters</span>
+                    <span class="nav__logo-name">InterBlend</span>
                 </a>
 
                 <div class="nav__list">
@@ -21,7 +21,7 @@
                     </a>
                     <a href="index.php?page=orderManage" class="nav-orderManage nav__link ">
                       <i class='bx bx-bar-chart-alt-2 nav__icon' ></i>
-                      <span class="nav__name">Orders</span>
+                      <span class="nav__name">Applications</span>
                     </a>
                     <a href="index.php?page=categoryManage" class="nav__link nav-categoryManage">
                       <i class='bx bx-folder nav__icon' ></i>

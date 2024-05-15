@@ -3,7 +3,7 @@
         <div class="table-title" style="border-radius: 14px;">
             <div class="row">
                 <div class="col-sm-4">
-                    <h2>Order <b>Details</b></h2>
+                    <h2>Applications <b>Details</b></h2>
                 </div>
                 <div class="col-sm-8">						
                     <a href="" class="btn btn-primary"><i class="material-icons">&#xE863;</i> <span>Refresh List</span></a>

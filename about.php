@@ -2,7 +2,7 @@
 <html>
 <head>
     <meta charset="utf-8" />
-    <title>Review & Rating System in PHP & Mysql using Ajax</title>
+    <title>Reviews</title>
     <meta name="viewport" content="width=device-width, initial-scale=1" />
       <!-- Required meta tags -->
       <meta charset="utf-8">
@@ -44,7 +44,7 @@
             <div class="carousel-background"><img src="assets/img/slide/1.jpg" alt=""></div>
             <div class="carousel-container">
               <div class="carousel-content">
-                <h2 class="animate__animated animate__fadeInDown">Welcome to <span>Cologne Crafters</span></h2>
+                <h2 class="animate__animated animate__fadeInDown">Welcome to <span>InterBlend</span></h2>
                 <a href="index.php" class="btn-get-started animate__animated animate__fadeInUp scrollto">Get Started</a>
               </div>
             </div>
@@ -76,7 +76,7 @@
     </div>
   </section><!-- End Hero -->
     <div class="container">
-    	<h1 class="mt-5 mb-5">Review & Rating System in PHP & Mysql using Ajax</h1>
+    	<h1 class="mt-5 mb-5">Reviews</h1>
     	<div class="card">
     		<div class="card-header">Sample Product</div>
     		<div class="card-body">

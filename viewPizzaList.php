@@ -26,7 +26,7 @@
     <div>&nbsp;
         <a href="index.php" class="active text-dark">
         <i class="fas fa-qrcode"></i>
-            <span>All Category</span>
+            <span>All Categories</span>
         </a>
     </div>
 
@@ -43,7 +43,7 @@
     <!-- Pizza container starts here -->
     <div class="container my-3" id="cont">
         <div class="col-lg-4 text-center bg-light my-3" style="margin:auto;border-top: 2px groove black;border-bottom: 2px groove black;">     
-            <h2 class="text-center"><span id="catTitle">Items</span></h2>
+            <h2 class="text-center"><span id="catTitle">Opportunities</span></h2>
         </div>
         <div class="row">
         <?php
@@ -63,7 +63,7 @@
                             <img src="img/pizza-'.$pizzaId. '.jpg" class="card-img-top" alt="image for this pizza" width="249px" height="270px">
                             <div class="card-body">
                                 <h5 class="card-title">' . substr($pizzaName, 0, 20). '...</h5>
-                                <h6 style="color: #ff0000"> '.$pizzaPrice. ' RON </h6>
+                                <h6 style="color: #ff0000"> '.$pizzaPrice. ' EUR </h6>
                                 <p class="card-text">' . substr($pizzaDesc, 0, 29). '...</p>   
                                 <div class="row justify-content-center">';
                                 if($loggedin){

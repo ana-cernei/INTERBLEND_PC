@@ -43,6 +43,79 @@
       ?>
     </div>
   </div>
+  <div id="page-wrap">
+        <h1 class="transparent index-headline">Află ce categorie de voluntariat ți se potrivește:
+        <button id="startQuiz"  class="btn btn-lg btn-primary">Începe Quiz-ul</button></h1>
+
+        <!-- Modal pentru Quiz -->
+        <div class="modal fade" id="quizModal" tabindex="-1" role="dialog" aria-labelledby="quizModalLabel" aria-hidden="true">
+            <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="quizModalLabel">Quiz</h5>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                    <div class="modal-body" id="quizModalBody">
+                        <!-- Quiz-ul va fi încărcat aici -->
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Modal pentru Rezultate -->
+        <div class="modal fade" id="resultModal" tabindex="-1" role="dialog" aria-labelledby="resultModalLabel" aria-hidden="true">
+            <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="resultModalLabel">Rezultatele Quiz-ului</h5>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                    <div class="modal-body" id="resultModalBody">
+                        <!-- Rezultatele vor fi încărcate aici -->
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- JavaScript necesar pentru Bootstrap și jQuery -->
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js"></script>
+
+    <!-- Script pentru încărcarea dinamică -->
+    <script>
+        $(document).ready(function() {
+            $('#startQuiz').on('click', function() {
+                $.ajax({
+                    url: 'partials/_test.php',
+                    method: 'GET',
+                    success: function(response) {
+                        $('#quizModalBody').html(response);
+                        $('#quizModal').modal('show');
+                    }
+                });
+            });
+
+            $(document).on('submit', '#quizForm', function(e) {
+                e.preventDefault();
+                $.ajax({
+                    url: 'partials/_grade.php',
+                    method: 'POST',
+                    data: $(this).serialize(),
+                    success: function(response) {
+                        $('#quizModal').modal('hide');
+                        $('#resultModalBody').html(response);
+                        $('#resultModal').modal('show');
+                    }
+                });
+            });
+        });
+    </script>
 
 
     <?php require 'partials/_footer.php' ?>

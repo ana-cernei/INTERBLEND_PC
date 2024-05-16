@@ -58,8 +58,8 @@ if (isset($_GET['status'])) {
     </div>
   </div>
   <div id="page-wrap">
-        <h1 class="transparent index-headline">Află ce categorie de voluntariat ți se potrivește:
-        <button id="startQuiz"  class="btn btn-lg btn-primary">Începe Quiz-ul</button></h1>
+        <h1 class="transparent index-headline">Discover which volunteering category suits you:
+        <button id="startQuiz"  class="btn btn-lg btn-primary">Start Quiz</button></h1>
 
         <!-- Modal pentru Quiz -->
         <div class="modal fade" id="quizModal" tabindex="-1" role="dialog" aria-labelledby="quizModalLabel" aria-hidden="true">
@@ -83,7 +83,7 @@ if (isset($_GET['status'])) {
             <div class="modal-dialog" role="document">
                 <div class="modal-content">
                     <div class="modal-header">
-                        <h5 class="modal-title" id="resultModalLabel">Rezultatele Quiz-ului</h5>
+                        <h5 class="modal-title" id="resultModalLabel">Results</h5>
                         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                             <span aria-hidden="true">&times;</span>
                         </button>

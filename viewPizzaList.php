@@ -66,23 +66,9 @@
                                 <h6 style="color: #ff0000"> '.$pizzaPrice. ' EUR </h6>
                                 <p class="card-text">' . substr($pizzaDesc, 0, 29). '...</p>   
                                 <div class="row justify-content-center">';
-                                if($loggedin){
-                                    $quaSql = "SELECT `itemQuantity` FROM `viewcart` WHERE pizzaId = '$pizzaId' AND `userId`='$userId'";
-                                    $quaresult = mysqli_query($conn, $quaSql);
-                                    $quaExistRows = mysqli_num_rows($quaresult);
-                                    if($quaExistRows == 0) {
-                                        echo '<form action="partials/_manageCart.php" method="POST">
-                                              <input type="hidden" name="itemId" value="'.$pizzaId. '">
-                                              <button type="submit" name="addToCart" class="btn btn-primary mx-2">Add to Cart</button>';
-                                    }else {
-                                        echo '<a href="viewCart.php"><button class="btn btn-primary mx-2">Go to Cart</button></a>';
-                                    }
-                                }
-                                else{
-                                    echo '<button class="btn btn-primary mx-2" data-toggle="modal" data-target="#loginModal">Add to Cart</button>';
-                                }
+
                             echo '</form>                            
-                                <a href="viewPizza.php?pizzaid=' . $pizzaId . '" class="mx-2"><button class="btn btn-primary">Quick View</button></a> 
+                                <a href="viewPizza.php?pizzaid=' . $pizzaId . '" class="mx-2"><button class="btn btn-primary">View</button></a> 
                                 </div>
                             </div>
                         </div>

@@ -78,7 +78,7 @@
     <div class="container">
     	<h1 class="mt-5 mb-5">Reviews</h1>
     	<div class="card">
-    		<div class="card-header">Sample Product</div>
+    		<div class="card-header"></div>
     		<div class="card-body">
     			<div class="row">
     				<div class="col-sm-4 text-center">

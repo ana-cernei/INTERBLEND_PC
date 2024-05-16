@@ -83,12 +83,12 @@
                 $quaresult = mysqli_query($conn, $quaSql);
                 $quaExistRows = mysqli_num_rows($quaresult);
                 if($quaExistRows == 0) {
-                    echo '<form action="partials/_manageCart.php" method="POST">
+                    echo '<form action="submitApplication.php" method="POST">
                           <input type="hidden" name="itemId" value="'.$pizzaId. '">
                           <button type="submit" name="Apply" class="btn btn-primary my-2">Apply</button>
                           </form>';
                 } else {
-                    echo '<a href="viewCart.php"><button class="btn btn-primary my-2">Go to Cart</button></a>';
+                    echo '<a href="apply.html"><button class="btn btn-primary my-2">Apply</button></a>';
                 }
             } else {
                 echo '<button class="btn btn-primary my-2" data-toggle="modal" data-target="#loginModal">Apply</button>';

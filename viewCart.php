@@ -8,7 +8,7 @@
     <!-- Bootstrap CSS -->
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.2/css/all.css" integrity="sha384-oS3vJWv+0UjzBfQzYUhtDYW+Pj2yciDJxpsK1OYPAYjqT085Qq/1cq5FLXAZQ7Ay" crossorigin="anonymous">
-    <title>Cart</title>
+    <title>My Applications</title>
     <link rel = "icon" href ="img/logo.jpg" type = "image/x-icon">
     <style>
     #cont{
@@ -36,11 +36,11 @@
     <div class="container" id="cont">
         <div class="row">
             <div class="alert alert-info mb-0" style="width: -webkit-fill-available;">
-              <strong>Info!</strong> online payment are currently disabled so please choose cash on delivery.
+              <strong>Info!</strong> 
             </div>
             <div class="col-lg-12 text-center border rounded bg-light my-3">
-                <h1>My Cart</h1>
-            </div>
+                <h1>My Applications</h1>
+          </div>
             <div class="col-lg-8">
                 <div class="card wish-list mb-3">
                     <table class="table text-center">
@@ -176,7 +176,7 @@
             </div>
         </div>
     </div>
-                                
+             
     <?php 
     }
     else {

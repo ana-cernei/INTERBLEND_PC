@@ -14,7 +14,21 @@
 <body>
   <?php include 'partials/_dbconnect.php';?>
   <?php require 'partials/_nav.php' ?>
-  
+ 
+<?php
+if (isset($_GET['status'])) {
+    $status = $_GET['status'];
+    if ($status == 'success') {
+        echo '<div class="alert alert-success" role="alert">Application submitted successfully!</div>';
+    } elseif ($status == 'error') {
+        $errorMsg = urldecode($_GET['errorMsg']);
+        echo '<div class="alert alert-danger" role="alert">Error submitting application: ' . htmlspecialchars($errorMsg) . '</div>';
+    } elseif ($status == 'invalidrequest') {
+        echo '<div class="alert alert-warning" role="alert">Invalid request method.</div>';
+    }
+}
+?>
+
   <!-- Category container starts here -->
   <div class="container my-3 mb-5">
     <div class="col-lg-2 text-center bg-light my-3" style="margin:auto;border-top: 2px groove black;border-bottom: 2px groove black;">     
@@ -118,7 +132,10 @@
     </script>
 
 
-    <?php require 'partials/_footer.php' ?>
+    <?php require 'partials/_footer.php' 
+    ?>
+  
+
     <!-- Optional JavaScript -->
     <!-- jQuery first, then Popper.js, then Bootstrap JS -->
     <script src="https://code.jquery.com/jquery-3.4.1.min.js" integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo=" crossorigin="anonymous"></script>

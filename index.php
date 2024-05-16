@@ -15,6 +15,20 @@
   <?php include 'partials/_dbconnect.php';?>
   <?php require 'partials/_nav.php' ?>
   
+  <?php
+if (isset($_GET['status'])) {
+    $status = $_GET['status'];
+    if ($status == 'success') {
+        echo '<div class="alert alert-success" role="alert">Application submitted successfully!</div>';
+    } elseif ($status == 'error') {
+        $errorMsg = urldecode($_GET['errorMsg']);
+        echo '<div class="alert alert-danger" role="alert">Error submitting application: ' . htmlspecialchars($errorMsg) . '</div>';
+    } elseif ($status == 'invalidrequest') {
+        echo '<div class="alert alert-warning" role="alert">Invalid request method.</div>';
+    }
+}
+?>
+
   <!-- Category container starts here -->
   <div class="container my-3 mb-5">
     <div class="col-lg-2 text-center bg-light my-3" style="margin:auto;border-top: 2px groove black;border-bottom: 2px groove black;">     
@@ -44,8 +58,8 @@
     </div>
   </div>
   <div id="page-wrap">
-        <h1 class="transparent index-headline">Află ce categorie de voluntariat ți se potrivește:
-        <button id="startQuiz"  class="btn btn-lg btn-primary">Începe Quiz-ul</button></h1>
+        <h1 class="transparent index-headline">Discover which volunteering category suits you:
+        <button id="startQuiz"  class="btn btn-lg btn-primary">Start Quiz</button></h1>
 
         <!-- Modal pentru Quiz -->
         <div class="modal fade" id="quizModal" tabindex="-1" role="dialog" aria-labelledby="quizModalLabel" aria-hidden="true">
@@ -69,7 +83,7 @@
             <div class="modal-dialog" role="document">
                 <div class="modal-content">
                     <div class="modal-header">
-                        <h5 class="modal-title" id="resultModalLabel">Rezultatele Quiz-ului</h5>
+                        <h5 class="modal-title" id="resultModalLabel">Results</h5>
                         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                             <span aria-hidden="true">&times;</span>
                         </button>

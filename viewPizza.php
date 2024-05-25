@@ -94,15 +94,17 @@
                     <i class="fas fa-qrcode"></i>
                     <span>All Opportunities</span>
                 </a>
+            </div>
+            <div class="mx-4">
                 <a href="index.php" class="active text-dark">
-                    <i class="fas fa-qrcode"></i>
+                <i class="fas fa-qrcode"></i>
                     <span>All Categories</span>
                 </a>
             </div>
-        </div>
-        </div>
+        </div>'
+    ?>
     </div>
-
+</div>
     <?php require 'partials/_footer.php' ?>
 
     <!-- Optional JavaScript -->

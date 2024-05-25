@@ -78,20 +78,15 @@
                 <p class="attribute-description"><span class="attribute-title">Food:</span><?php echo nl2br($food); ?></p>
             </div>
             <?php
-            if($loggedin) {
-                $quaSql = "SELECT `itemQuantity` FROM `viewcart` WHERE pizzaId = '$pizzaId' AND `userId`='$userId'";
-                $quaresult = mysqli_query($conn, $quaSql);
-                $quaExistRows = mysqli_num_rows($quaresult);
-                if($quaExistRows == 0) {
-                    echo '<form action="submitApplication.php" method="POST">
-                          <input type="hidden" name="itemId" value="'.$pizzaId. '">
-                          <button type="submit" name="Apply" class="btn btn-primary my-2">Apply</button>
-                          </form>';
-                } else {
-                    echo '<a href="apply.html"><button class="btn btn-primary my-2">Apply</button></a>';
-                }
+              if ($loggedin) {
+                // User is logged in, show apply form or redirect link
+                echo '<form action="submitApplication.php" method="POST">
+                      <input type="hidden" name="itemId" value="'.$pizzaId. '">
+                      <button type="submit" name="Apply" class="btn btn-primary my-2">Apply</button>
+                      </form>';
             } else {
-                echo '<button class="btn btn-primary my-2" data-toggle="modal" data-target="#loginModal">Apply</button>';
+                // User is not logged in, prompt them to log in
+                echo '<button class="btn btn-primary my-2" data-toggle="modal" data-target="#loginModal">Log in to Apply</button>';
             }
             ?>
             <div class="link-section mt-4">

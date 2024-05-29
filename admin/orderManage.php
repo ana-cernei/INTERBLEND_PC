@@ -1,3 +1,15 @@
+<?php
+include 'partials/_dbconnect.php'; // Include your database connection file
+
+// Handle status update request
+if(isset($_POST['updateStatus'])) {
+    $orderId = $_POST['orderId'];
+    $newStatus = $_POST['status'];
+    $updateSql = "UPDATE `orders` SET `status`='$newStatus' WHERE `orderId`=$orderId";
+    $updateResult = mysqli_query($conn, $updateSql);
+}
+?>
+
 <div class="container" style="margin-top:98px;background: aliceblue;">
     <div class="table-wrapper">
         <div class="table-title" style="border-radius: 14px;">
@@ -17,64 +29,71 @@
                 <tr>
                     <th>Order Id</th>
                     <th>User Id</th>
-                    <th>Address</th>
                     <th>Phone No</th>
-                    <th>Amount</th>						
-                    <th>Payment Mode</th>
                     <th>Order Date</th>
-                    <th>Status</th>						
-                    <th>Items</th>
+                    <th>Skills</th>
+                    <th>Languages</th>
+                    <th>Education</th>
+                    <th>Experience</th>
+                    <th>Status</th>
+                    <th>Change Status</th>
                 </tr>
             </thead>
             <tbody>
                 <?php
-                    $sql = "SELECT * FROM `orders`";
-                    $result = mysqli_query($conn, $sql);
-                    $counter = 0;
-                    while($row = mysqli_fetch_assoc($result)){
-                        $Id = $row['userId'];
-                        $orderId = $row['orderId'];
-                        $address = $row['address'];
-                        $zipCode = $row['zipCode'];
-                        $phoneNo = $row['phoneNo'];
-                        $amount = $row['amount'];
-                        $orderDate = $row['orderDate'];
-                        $paymentMode = $row['paymentMode'];
+                $sql = "SELECT * FROM `orders`";
+                $result = mysqli_query($conn, $sql);
+                $counter = 0;
+                while($row = mysqli_fetch_assoc($result)){
+                    $orderId = $row['orderId'];
+                    $userId = $row['userId'];
+                    $phoneNo = $row['phoneNo'];
+                    $orderDate = $row['orderDate'];
+                    $skills = $row['skills'];
+                    $languages = $row['languages'];
+                    $education = $row['education'];
+                    $experience = $row['experience'];
+                    $status = $row['status'];
+                    $counter++;
 
-                        if($paymentMode == 0) {
-                            $paymentMode = "Cash on Delivery";
-                        }
-                        else {
-                            $paymentMode = "Online";
-                        }
-                        $orderStatus = $row['orderStatus'];
-                        $counter++;
-                        
-                        echo '<tr>
-                                <td>' . $orderId . '</td>
-                                <td>' . $Id . '</td>
-                                <td data-toggle="tooltip" title="' .$address. '">' . substr($address, 0, 20) . '...</td>
-                                <td>' . $phoneNo . '</td>
-                                <td>' . $amount . '</td>
-                                <td>' . $paymentMode . '</td>
-                                <td>' . $orderDate . '</td>
-                                <td><a href="#" data-toggle="modal" data-target="#orderStatus' . $orderId . '" class="view"><i class="material-icons">&#xE5C8;</i></a></td>
-                                <td><a href="#" data-toggle="modal" data-target="#orderItem' . $orderId . '" class="view" title="View Details"><i class="material-icons">&#xE5C8;</i></a></td>
-                            </tr>';
+                    $statusClass = '';
+                    if ($status == 'accepted') {
+                        $statusClass = 'status-accepted';
+                    } elseif ($status == 'rejected') {
+                        $statusClass = 'status-rejected';
                     }
-                    if($counter==0) {
-                        ?><script> document.getElementById("NoOrder").innerHTML = '<div class="alert alert-info alert-dismissible fade show" role="alert" style="width:100%"> You have not Recieve any Order!	</div>';</script> <?php
-                    } 
+
+                    echo '<tr class="' . $statusClass . '">
+                            <td>' . $orderId . '</td>
+                            <td>' . $userId . '</td>
+                            <td>' . $phoneNo . '</td>
+                            <td>' . $orderDate . '</td>
+                            <td>' . $skills . '</td>
+                            <td>' . $languages . '</td>
+                            <td>' . $education . '</td>
+                            <td>' . $experience . '</td>
+                            <td>' . $status . '</td>
+                            <td>
+                                <form method="post" action="">
+                                    <input type="hidden" name="orderId" value="' . $orderId . '">
+                                    <select name="status" onchange="this.form.submit()">
+                                        <option value="in progress"' . ($status == 'in progress' ? ' selected' : '') . '>In Progress</option>
+                                        <option value="accepted"' . ($status == 'accepted' ? ' selected' : '') . '>Accepted</option>
+                                        <option value="rejected"' . ($status == 'rejected' ? ' selected' : '') . '>Rejected</option>
+                                    </select>
+                                    <input type="hidden" name="updateStatus" value="1">
+                                </form>
+                            </td>
+                        </tr>';
+                }
+                if($counter == 0) {
+                    echo '<tr><td colspan="10"><div class="alert alert-info alert-dismissible fade show" role="alert" style="width:100%">You have not received any order!</div></td></tr>';
+                }
                 ?>
             </tbody>
         </table>
     </div>
-</div> 
-
-<?php 
-    include 'partials/_orderItemModal.php';
-    include 'partials/_orderStatusModal.php';
-?>
+</div>
 
 <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
 <style>
@@ -183,7 +202,14 @@
         content: counter(section);
     }
     
+    /* CSS pentru statusuri */
+    .status-accepted {
+        background-color: #d4edda !important; /* Verde deschis */
+    }
 
+    .status-rejected {
+        background-color: #f8d7da !important; /* Roșu deschis */
+    }
 </style>
 
 <script>

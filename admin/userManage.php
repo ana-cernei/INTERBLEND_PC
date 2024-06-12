@@ -1,4 +1,3 @@
-
 <div class="container-fluid" style="margin-top:98px">
 	
 	<div class="row">
@@ -141,7 +140,7 @@
 </div>
 
 <?php 
-    $usersql = "SELECT * FROM `users`";
+    $usersql = "SELECT * FROM users";
     $userResult = mysqli_query($conn, $usersql);
     while($userRow = mysqli_fetch_assoc($userResult)){
         $Id = $userRow['id'];

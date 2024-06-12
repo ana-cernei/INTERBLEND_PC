@@ -12,12 +12,12 @@ if($_SERVER["REQUEST_METHOD"] == "POST") {
         $result = mysqli_query($conn, $sql);
         if($result) {
             echo "<script>alert('success');
-                    window.location=document.referrer;
-                </script>";
+            window.location='http://localhost/INTERBLEND_PC/admin/index.php?page=contactManage';
+        </script>";
         }
         else {
             echo "<script>alert('failed');
-                    window.location=document.referrer;
+            window.location='http://localhost/INTERBLEND_PC/admin/index.php?page=contactManage';
                 </script>";
         }
     }

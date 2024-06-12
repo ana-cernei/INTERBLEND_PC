@@ -1,3 +1,4 @@
+
 <!doctype html>
 <html lang="en">
   <head>
@@ -172,13 +173,7 @@
                                 </div>
                             </div>
                           </div>
-                          <div class="col-lg-6">
-                            <div class="form-group mt-3">
-                              <b><label for="orderId">Order Id:</label></b>
-                              <input class="form-control" type="text" id="orderId" name="orderId" placeholder="Order Id" value="0">
-                              <small id="orderIdHelp" class="form-text text-muted">If your problem is not related to the order(order id = 0).</small>
-                            </div>
-                          </div>
+                  
                           <div class="col-lg-6">
                             <div class="form-group mt-3">
                               <b><label for="password">Password:</label></b>
@@ -198,7 +193,7 @@
                           <?php }else { ?>
                             <div class="col-lg-12">
                               <button type="submit" class="btn btn-danger-gradiant mt-3 text-white border-0 py-2 px-3" disabled><span> SUBMIT NOW <i class="ti-arrow-right"></i></span></button>
-                              <small class="form-text text-muted">First login to Contct with Us.</small>
+                              <small class="form-text text-muted">First login to Contact with Us.</small>
                             </div>
                           <?php } ?>
                         </div>
@@ -223,11 +218,7 @@
                             <h5 class="text-white font-weight-light mb-3 mt-4">CALL US</h5>
                             <p class="text-white op-7">' .$contact1. '
                               <br> ' .$contact2. '</p>
-                            <div class="round-social light">
-                              <a href="https://mail.google.com/mail/?view=cm&fs=1&tf=1&to=' .$email. '" class="ml-0 text-decoration-none text-white border border-white rounded-circle" target="_blank"><i class="far fa-envelope"></i></a>
-                              <a href="https://github.com/darshankparmar" class="text-decoration-none text-white border border-white rounded-circle" target="_blank"><i class="fab fa-github"></i></i></a>
-                              <a href="https://youtube.com/" class="text-decoration-none text-white border border-white rounded-circle" target="_blank"><i class="fab fa-youtube"></i></a>
-                            </div>
+            
                           </div>
                         </div>';
                   ?>
@@ -300,7 +291,7 @@
                 <thead style="background-color: rgb(111 202 203);">
                     <tr>
                         <th>Contact Id</th>
-                        <th>Order Id</th>
+                  
                         <th>Message</th>
                         <th>datetime</th>
                     </tr>
@@ -312,13 +303,12 @@
                     $count = 0;
                     while($row=mysqli_fetch_assoc($result)) {
                         $contactId = $row['contactId'];
-                        $orderId = $row['orderId'];
+                     
                         $message = $row['message'];
                         $datetime = $row['time'];
                         $count++;
                         echo '<tr>
                                 <td>' .$contactId. '</td>
-                                <td>' .$orderId. '</td>
                                 <td>' .$message. '</td>
                                 <td>' .$datetime. '</td>
                               </tr>';

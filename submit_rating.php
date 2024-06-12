@@ -2,25 +2,25 @@
 
 include 'partials/_dbconnect.php';
 
-if(isset($_POST["rating_data"]))
-{
+if (isset($_POST["rating_data"])) {
     $dateTime = time(); // Store time() in a variable
 
     $query = "
     INSERT INTO review_table 
-    (user_name, user_rating, user_review, datetime) 
-    VALUES (?, ?, ?, ?)
+    (user_name, user_rating, user_review, datetime, opportunity_category) 
+    VALUES (?, ?, ?, ?, ?)
     ";
 
     $statement = $conn->prepare($query);
 
-    // Use the variable instead of function directly
-    $statement->bind_param("sisi", $_POST["user_name"], $_POST["rating_data"], $_POST["user_review"], $dateTime);
+    // Bind the opportunity category as well
+    $statement->bind_param("sisss", $_POST["user_name"], $_POST["rating_data"], $_POST["user_review"], $dateTime, $_POST["opportunity_category"]);
 
     $statement->execute();
 
     echo "Your Review & Rating Successfully Submitted";
 }
+
 
 if(isset($_POST["action"]))
 {
@@ -41,10 +41,11 @@ if(isset($_POST["action"]))
     while ($row = $result->fetch_assoc()) 
     {
         $review_content[] = array(
-            'user_name'     => $row["user_name"],
-            'user_review'   => $row["user_review"],
-            'rating'        => $row["user_rating"],
-            'datetime'      => date('l jS, F Y h:i:s A', $row["datetime"])
+            'user_name'           => $row["user_name"],
+            'user_review'         => $row["user_review"],
+            'rating'              => $row["user_rating"],
+            'datetime'            => date('l jS, F Y h:i:s A', $row["datetime"]),
+            'opportunity_category'=> $row["opportunity_category"]
         );
 
         switch ($row["user_rating"]) {

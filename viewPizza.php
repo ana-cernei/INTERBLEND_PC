@@ -78,20 +78,43 @@
                 <p class="attribute-description"><span class="attribute-title">Food:</span><?php echo nl2br($food); ?></p>
             </div>
             <?php
-              if ($loggedin) {
-                // User is logged in, show apply form or redirect link
-                echo '<form action="submitApplication.php" method="POST">
-                      <input type="hidden" name="itemId" value="'.$pizzaId. '">
-                      <button type="submit" name="Apply" class="btn btn-primary my-2">Apply</button>
-                      </form>';
-            } else {
-                // User is not logged in, prompt them to log in
-                echo '<button class="btn btn-primary my-2" data-toggle="modal" data-target="#loginModal">Log in to Apply</button>';
-            }
-            ?>
-            <div class="link-section mt-4">
-                <a href="viewPizzaList.php?catid=<?php echo $pizzaCategorieId; ?>" class="active text-dark">
-                    <i class="fas fa-qrcode"></i>
+if($loggedin) {
+    $quaSql = "SELECT `itemQuantity` FROM `viewcart` WHERE pizzaId = '$pizzaId' AND `userId`='$userId'";
+    $quaresult = mysqli_query($conn, $quaSql);
+    $quaExistRows = mysqli_num_rows($quaresult);
+    if($quaExistRows == 0) {
+        echo '<form id="addToCartForm" action="partials/_manageCart.php" method="POST">
+              <input type="hidden" name="itemId" value="'.$pizzaId.'">
+              <input type="hidden" name="redirect" value="apply.html">
+              <button type="submit" name="addToCart" class="btn btn-primary my-2">Apply</button>
+              </form>
+              <script>
+                  document.getElementById("addToCartForm").addEventListener("submit", function(event) {
+                      event.preventDefault();
+                      var form = this;
+                      var request = new XMLHttpRequest();
+                      request.open("POST", form.action, true);
+                      request.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
+                      request.onreadystatechange = function() {
+                          if(request.readyState === 4 && request.status === 200) {
+                              window.location.href = "apply.html";
+                          }
+                      };
+                      request.send(new URLSearchParams(new FormData(form)).toString());
+                  });
+              </script>';
+    } else {
+        echo '<a href="apply.html"><button class="btn btn-primary my-2">Apply</button></a>';
+    }
+} else {
+    echo '<button class="btn btn-primary my-2" data-toggle="modal" data-target="#loginModal">Apply</button>';
+}
+
+            echo '</form>
+            <h6 class="my-1"> View </h6>
+            <div class="mx-4">
+                <a href="viewPizzaList.php?catid=' . $pizzaCategorieId . '" class="active text-dark">
+                <i class="fas fa-qrcode"></i>
                     <span>All Opportunities</span>
                 </a>
             </div>

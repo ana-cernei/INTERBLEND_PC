@@ -1,5 +1,4 @@
 <div class="alert alert-info alert-dismissible fade show" role="alert" style="width:100%" id='notempty'>
-    <strong>Info!</strong> If problem is not related to the order then order id = 0	
     <button type="button" class="close" data-dismiss="alert"><span aria-hidden="true">×</span></button>
 </div>
 <style>
@@ -25,7 +24,6 @@
                             <th>UserId</th>
                             <th>Email</th>
                             <th>Phone No</th>
-                            <th>Order Id</th>
                             <th>Message</th>
                             <th>datetime</th>
                             <th>Reply</th>
@@ -41,7 +39,7 @@
                                 $userId = $row['userId'];
                                 $email = $row['email'];
                                 $phoneNo = $row['phoneNo'];
-                                $orderId = $row['orderId'];
+                    
                                 $message = $row['message'];
                                 $time = $row['time'];
                                 $count++;
@@ -51,7 +49,7 @@
                                         <td>' .$userId. '</td>
                                         <td>' .$email. '</td>
                                         <td>' .$phoneNo. '</td>
-                                        <td>' .$orderId. '</td>
+                                  
                                         <td>' .$message. '</td>
                                         <td>' .$time. '</td>
                                         <td class="text-center">
@@ -60,7 +58,7 @@
                                     </tr>';
                             }
                             if($count==0) {
-                              ?><script> document.getElementById("notempty").innerHTML = '<div class="alert alert-info alert-dismissible fade show" role="alert" style="width:100%"> You have not recieve any message!	</div>';
+                              ?><script> document.getElementById("notempty").innerHTML = '<div class="alert alert-info alert-dismissible fade show" role="alert" style="width:100%"> You have not recieved any message!	</div>';
                               document.getElementById("empty").innerHTML = '';
                               </script> <?php
                             }

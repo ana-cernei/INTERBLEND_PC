@@ -1,15 +1,81 @@
 <?php
 include 'partials/_dbconnect.php'; // Include your database connection file
 
+use PHPMailer\PHPMailer\PHPMailer;
+use PHPMailer\PHPMailer\Exception;
+require 'C:\xampp\htdocs\INTERBLEND_PC\vendor\autoload.php'; // Path to Composer autoload
+
 // Handle status update request
 if(isset($_POST['updateStatus'])) {
     $orderId = $_POST['orderId'];
     $newStatus = $_POST['status'];
-    $updateSql = "UPDATE `orders` SET `status`='$newStatus' WHERE `orderId`=$orderId";
-    $updateResult = mysqli_query($conn, $updateSql);
+
+    // Check current status to avoid resending the email if the status hasn't changed
+    $currentStatusQuery = "SELECT status FROM `orders` WHERE `orderId` = ?";
+    $stmt = mysqli_prepare($conn, $currentStatusQuery);
+    mysqli_stmt_bind_param($stmt, 'i', $orderId);
+    mysqli_stmt_execute($stmt);
+    mysqli_stmt_bind_result($stmt, $currentStatus);
+    mysqli_stmt_fetch($stmt);
+    mysqli_stmt_close($stmt);
+
+    if ($currentStatus !== $newStatus) {
+        $updateSql = "UPDATE `orders` SET `status` = ? WHERE `orderId` = ?";
+        $stmt = mysqli_prepare($conn, $updateSql);
+        mysqli_stmt_bind_param($stmt, 'si', $newStatus, $orderId);
+        if (mysqli_stmt_execute($stmt)) {
+            mysqli_stmt_close($stmt);
+
+            // Fetch user's email and username to send status update
+            $emailQuery = "SELECT users.email, users.username FROM users JOIN orders ON users.id = orders.userId WHERE orders.orderId = ?";
+            $stmt = mysqli_prepare($conn, $emailQuery);
+            mysqli_stmt_bind_param($stmt, 'i', $orderId);
+            mysqli_stmt_execute($stmt);
+            $result = mysqli_stmt_get_result($stmt);
+            $user = mysqli_fetch_assoc($result);
+            mysqli_stmt_close($stmt);
+
+            if ($user) {
+                // Prepare the email body based on the status
+                $emailBody = "";
+                if ($newStatus == "accepted") {
+                    $emailBody = "Dear " . htmlspecialchars($user['username']) . ",<br><strong>Congratulations!</strong> You have been accepted. Please contact us to set the interview, which is the next step in this beautiful experience. We look forward to hearing from you.";
+                } elseif ($newStatus == "rejected") {
+                    $emailBody = "Dear " . htmlspecialchars($user['username']) . ",<br>We are sorry to inform you that your application was rejected, but we hope you will find a more suitable opportunity in the future. Thank you!";
+                }
+
+                // Send email notification about status change
+                $mail = new PHPMailer(true);
+                try {
+                    $mail->isSMTP();
+                    $mail->Host = 'smtp.gmail.com';
+                    $mail->SMTPAuth = true;
+                    $mail->Username = 'andreea.vonica03@e-uvt.ro'; // Your Gmail username
+                    $mail->Password = 'wcko iwcr gdem ejhe'; // Your Gmail app password
+                    $mail->Port = 587;
+                    $mail->setFrom('andreea.vonica03@e-uvt.ro', 'PC'); // Your Gmail address and your name
+                    $mail->addAddress($user['email'], $user['username']); // User's email and username
+                    $mail->isHTML(true);
+                    $mail->Subject = 'Application Status Update';
+                    $mail->Body = $emailBody;
+                    $mail->send();
+                    echo "<script>alert('Status updated and notification sent.');</script>";
+                } catch (Exception $e) {
+                    echo "<script>alert('Mailer Error: " . $mail->ErrorInfo . "');</script>";
+                }
+            }
+        } else {
+            echo "<script>alert('Failed to update status.');</script>";
+        }
+    } else {
+        echo "<script>alert('No change in status, no email sent.');</script>";
+    }
 }
 ?>
 
+
+
+<!-- Continue with your existing HTML and JavaScript setup -->
 <div class="container" style="margin-top:98px;background: aliceblue;">
     <div class="table-wrapper">
         <div class="table-title" style="border-radius: 14px;">
@@ -17,7 +83,7 @@ if(isset($_POST['updateStatus'])) {
                 <div class="col-sm-4">
                     <h2>Applications <b>Details</b></h2>
                 </div>
-                <div class="col-sm-8">						
+                <div class="col-sm-8">                     
                     <a href="" class="btn btn-primary"><i class="material-icons">&#xE863;</i> <span>Refresh List</span></a>
                     <a href="#" onclick="window.print()" class="btn btn-info"><i class="material-icons">&#xE24D;</i> <span>Print</span></a>
                 </div>

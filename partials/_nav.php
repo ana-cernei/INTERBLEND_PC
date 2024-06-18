@@ -52,7 +52,7 @@ echo '<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
           <input class="form-control mr-sm-2" type="search" name="search" id="search" placeholder="Search" aria-label="Search" required>
           <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
         </form>';
-
+        if($loggedin){
         // Count applications in orders table
         $countsql = "SELECT COUNT(*) AS totalApplications FROM `orders` WHERE `userId`=$userId"; 
         $countresult = mysqli_query($conn, $countsql);
@@ -65,7 +65,7 @@ echo '<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
           <i class="bi bi-cart">My Applications(' .$count. ')</i>
         </button></a>';
 
-        if($loggedin){
+       
           echo '<ul class="navbar-nav mr-2">
             <li class="nav-item dropdown">
               <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown"> Welcome ' .$username. '</a>

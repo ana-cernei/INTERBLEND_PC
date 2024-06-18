@@ -4,6 +4,20 @@ session_start();
 
 if($_SERVER["REQUEST_METHOD"] == "POST") {
     $userId = $_SESSION['userId'];
+        if (isset($_POST['deleteApplication'])) {
+            $orderId = $_POST['orderId'];
+            
+            // SQL query to delete the application
+            $sql = "DELETE FROM `orders` WHERE `orderId` = $orderId";
+            $result = mysqli_query($conn, $sql);
+    
+            if ($result) {
+                header("Location: /INTERBLEND_PC/viewCart.php?delete=success");
+            } else {
+                header("Location: /INTERBLEND_PC/viewCart.php?delete=fail");
+            }
+        
+    }
     if(isset($_POST['addToCart'])) {
         $itemId = $_POST["itemId"];
         // Check whether this item exists

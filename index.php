@@ -10,6 +10,101 @@
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.2/css/all.css" integrity="sha384-oS3vJWv+0UjzBfQzYUhtDYW+Pj2yciDJxpsK1OYPAYjqT085Qq/1cq5FLXAZQ7Ay" crossorigin="anonymous">
     <title>Home</title>
     <link rel = "icon" href ="img/logo1.jpg" type = "image/x-icon">
+    <style>
+  body {
+    background-color: #f8f9fa;
+    font-family: 'Arial', sans-serif;
+  }
+  .navbar {
+    background-color: #343a40;
+  }
+  .navbar-nav .nav-link {
+    color: #ffffff !important;
+  }
+  .alert {
+    margin: 20px 0;
+  }
+  .card {
+    margin-bottom: 20px;
+    padding: 10px;
+    transition: transform 0.3s, box-shadow 0.3s;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    border: 2px solid #dcdcdc; /* Light grey border */
+    border-radius: 10px; /* Rounded corners */
+  }
+  .card:hover {
+    transform: scale(1.05);
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+  }
+  .card-title a {
+    color: #007bff;
+    text-decoration: none;
+  }
+  .card-title a:hover {
+    text-decoration: underline;
+  }
+  .index-headline {
+    margin: 50px 0;
+    text-align: center;
+    font-size: 2.5rem;
+  }
+  #page-wrap {
+    text-align: center;
+  }
+  .modal-content {
+    border-radius: 10px;
+  }
+  .btn-primary {
+    background-color: #007bff;
+    border-color: #007bff;
+  }
+  .btn-primary:hover {
+    background-color: #0056b3;
+    border-color: #0056b3;
+  }
+  .btn-lg {
+    padding: 15px 30px;
+    font-size: 1.25rem;
+  }
+  .modal-content {
+    border-radius: 10px;
+    border: none;
+  }
+  .modal-header {
+    background-color: #007bff;
+    color: white;
+    border-top-left-radius: 10px;
+    border-top-right-radius: 10px;
+  }
+  .modal-title {
+    font-size: 1.5rem;
+    font-weight: bold;
+  }
+  .modal-body {
+    padding: 30px;
+  }
+  .menu-title {
+    margin: 0 auto 20px auto;
+    padding: 20px;
+    border: 2px solid #343a40; /* Darker grey border */
+    background: linear-gradient(145deg, #f8f9fa, #e9ecef); /* Gradient background */
+    box-shadow: 0 4px 8px rgba(0, 0, 0.2, 0.7);
+    border-radius: 10px;
+    text-align: center;
+    width: fit-content; /* Adjusts the width to fit the content */
+  }
+  .menu-title h2 {
+    margin: 0;
+    color: #343a40;
+    font-size: 2.5rem; /* Increased font size */
+    font-weight: bold; /* Bold text */
+    font-family: 'Georgia', serif; /* Change font family */
+    letter-spacing: 2px; /* Increased letter spacing */
+  }
+</style>
+
+
+
   </head>
 <body>
   <?php include 'partials/_dbconnect.php';?>
@@ -31,10 +126,10 @@ if (isset($_GET['status'])) {
 
   <!-- Category container starts here -->
   <div class="container my-3 mb-5">
-    <div class="col-lg-2 text-center bg-light my-3" style="margin:auto;border-top: 2px groove black;border-bottom: 2px groove black;">     
-      <h2 class="text-center">Menu </h2>
-    </div>
-    <div class="row">
+  <div class="menu-title my-3">     
+    <h2>Opportunities</h2>
+  </div>
+  <div class="row">
       <!-- Fetch all the categories and use a loop to iterate through categories -->
       <?php 
         $sql = "SELECT * FROM `categories`"; 
